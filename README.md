@@ -1,8 +1,8 @@
 ---
 title: GenAI Toolkit
 emoji: 🤖
-colorFrom: teal
-colorTo: blue
+colorFrom: blue
+colorTo: green
 sdk: docker
 pinned: false
 ---
