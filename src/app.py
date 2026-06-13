@@ -78,7 +78,8 @@ input[type=range] { accent-color: var(--primary) !important; }
 
 
 def create_app():
-    with gr.Blocks(title="GenAI Toolkit", css=custom_css) as app:
+    with gr.Blocks(title="GenAI Toolkit") as app:
+
 
         gr.HTML("""
         <div class="app-header">
@@ -174,7 +175,7 @@ def create_app():
             with gr.Tab("💬 Chat"):
                 gr.HTML('<p class="section-title">AI Chat Assistant</p><p class="section-subtitle">Multi-turn conversations powered by LangGraph + LLaMA 3.3 70B</p>')
                 with gr.Column(elem_classes="feature-card"):
-                    chatbot = gr.Chatbot(height=450, label="", elem_classes="chatbot", show_label=False)
+                    chatbot = gr.Chatbot(height=450, label="", elem_classes="chatbot", show_label=False,type="messages")    
                     with gr.Row():
                         c_input = gr.Textbox(label="", placeholder="Ask me anything...", scale=5, container=False)
                         c_btn   = gr.Button("Send ➜", variant="primary", scale=1)
@@ -187,7 +188,8 @@ def create_app():
                         return "", history
                     response = chat_session.chat(message)
                     history = history or []
-                    history.append((message, response))
+                    history.append({"role": "user", "content": message})
+                    history.append({"role": "assistant", "content": response})
                     return "", history
 
                 def clear():
@@ -252,4 +254,6 @@ if __name__ == "__main__":
         server_name="0.0.0.0",
         server_port=7860,
         share=False
+        css=custom_css
+
     )
