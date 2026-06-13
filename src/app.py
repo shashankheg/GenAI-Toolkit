@@ -1,3 +1,5 @@
+from urllib import response
+
 import gradio as gr
 from src.features.translation import translate_text
 from src.features.summarization import summarize_text
@@ -208,7 +210,7 @@ def create_app():
             with gr.Tab("💬 Chat"):
                 gr.HTML('<p class="section-title">AI Chat Assistant</p><p class="section-subtitle">Multi-turn conversations powered by LangGraph + LLaMA 3.3 70B</p>')
                 with gr.Column(elem_classes="feature-card"):
-                    chatbot = gr.Chatbot(height=450, label="", elem_classes="chatbot", show_label=False)
+                    chatbot = gr.Chatbot(height=450, label="", elem_classes="chatbot", show_label=False, type="messages")
                     with gr.Row():
                         c_input = gr.Textbox(label="", placeholder="Ask me anything...", scale=5, container=False)
                         c_btn   = gr.Button("Send ➜", variant="primary", scale=1, elem_classes="primary-btn")
@@ -220,7 +222,8 @@ def create_app():
                     if not message.strip():
                         return "", history
                     response = chat_session.chat(message)
-                    history.append((message, response))
+                    history.append({"role": "user", "content": message})
+                    history.append({"role": "assistant", "content": response})
                     return "", history
 
                 def clear():
