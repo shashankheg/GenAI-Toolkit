@@ -13,4 +13,4 @@ ENV GROQ_API_KEY=""
 
 EXPOSE 7860
 
-CMD ["python", "-m", "src.app"]
+CMD ["sh", "-c", "python -c 'import gradio; print(\"Gradio version:\", gradio.__version__)' && python -m src.app"]
