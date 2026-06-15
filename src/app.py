@@ -78,7 +78,7 @@ input[type=range] { accent-color: var(--primary) !important; }
 
 
 def create_app():
-    with gr.Blocks(title="GenAI Toolkit") as app:
+    with gr.Blocks(title="GenAI Toolkit",css=custom_css) as app:
 
 
         gr.HTML("""
@@ -253,7 +253,7 @@ if __name__ == "__main__":
     app.launch(
         server_name="0.0.0.0",
         server_port=7860,
-        share=False
-        css=custom_css
+        share=False,
+        
 
     )
