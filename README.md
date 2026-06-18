@@ -134,6 +134,19 @@ docker run -p 7860:7860 -e GROQ_API_KEY=your-key genai-toolkit
 
 ---
 
+---
+
+# Model Evaluation 
+
+| Methods  |  Explanation |
+
+|------|-------|
+
+RAGAS for PDF Q&A — no ground truth needed, uses LLM to evaluate
+LLM-as-Judge for Chat — use LLaMA to rate its own responses
+ROUGE for Summarization — quick and easy
+BLEU for Translation — industry standard
+
 ## 👨‍💻 Author
 
 
